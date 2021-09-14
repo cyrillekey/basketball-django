@@ -1,0 +1,44 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block content %}
+ 
+<div class="login">
+            <div class="form-modal">
+        
+                <div class="form-toggle">
+                    <button id="login-toggle" onclick="toggleLogin()">Sign Up</button>
+                </div>
+            
+                <div id="login-form">
+                    <form method="POST">
+                         {% csrf_token %}
+            
+                
+            {% for field in registration_form %}
+                {{field}}
+    
+            {%endfor%} 
+
+            {% for field in registration_form %}
+                {% for error in field.errors %}
+            <p style="font-size: smaller; color:red;text-align: center;">{{error | escape}}</p>
+                {% endfor %}
+            {% endfor %}
+                {% if registration_form.non_field_errors %}
+            <p style="font-size: smaller; color:red;text-align: center;">{{registration_form.non_field_errors}}</p>
+
+                {% endif %}
+                        <button type="submit" class="btn login">Signup</button>
+                        <p><a href="{% url 'login' %}">Already Have an account ?</a></p>
+                        <hr/>
+                        <button type="button" class="btn -box-sd-effect"> <i class="fa fa-google fa-lg" aria-hidden="true"></i> sign in with google</button>
+                        <button type="button" class="btn -box-sd-effect"> <i class="fa fa-linkedin fa-lg" aria-hidden="true"></i> sign in with linkedin</button>
+                        <button type="button" class="btn -box-sd-effect"> <i class="fa fa-windows fa-lg" aria-hidden="true"></i> sign in with microsoft</button>
+                    </form>
+                </div>
+            
+            </div>
+            
+        </div>
+
+{% endblock %}

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Cart</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Colo Shop Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- font Awesome Cdn -->
+    <script src="../js/jquery.min.js"></script>
+    <!-- Bootstrap JS CDN -->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- jquery JS File -->
+    
+    <!-- Isotope JS File -->
+    
+
+ 
+    
+    <script src="https://kit.fontawesome.com/e48d166edc.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap cdn 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    -->
+    <!-- Owl Carousel File -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/tiny-slider.css">
+    <link rel="stylesheet" href="../css/LineIcons.3.0.css">
+    <script src="../js/tiny-slider.js"></script>
+    <!-- CSS File -->
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" href="../css/font-awesome.css">
+
+</head>
+
+<body>
+
+    <div class="super_container">
+        <!-- Header -->
+
+
+        <header class="header trans_300">
+            <!--main navigation-->
+            <div class="main_nav_container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-right">
+                            <div class="logo-container">
+                                <a href="#">Sports<span>Jerseys</span></a>
+                            </div>
+                            <nav class="navbar">
+                                <ul class="navbar_menu">
+                                    <li>
+                                        <a href="">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Catalog</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Login</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Mystery Jersey</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Products</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Football</a>
+                                    </li>
+
+                                </ul>
+                                <ul class="navbar_user">
+                                    <li><a href=""><i class="fa fa-search" arial-hidden=true></i></a></li>
+                                    <li><a href=""><i class="fa fa-user"></i></a></li>
+                                    <li class="checkout">
+                                        <a href="#" id="cart" >
+                                            <i  class="fa fa-shopping-cart"></i> <span id="checkout_items" class="checkout_items">23</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="hamburger_container">
+                                    <i class="fa fa-bars" aria-hidden="true"></i>
+                                </div>
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </header>
+
+
+        <div class="fs_menu_overlay">
+            <div class="hamburger_menu">
+                <div class="hamburger_close">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </div>
+                <div class="hamburger_menu_content text-right">
+                    <ul class="menu_top_nav">
+                        <li class="menu_item"><a href="">home</a></li>
+                        <li class="menu_item"><a href="">home</a></li>
+                        <li class="menu_item"><a href="">away</a></li>
+                        <li class="menu_item"><a href="">2hy</a></li>
+                        <li class="menu_item"><a href="">home</a></li>
+                        <li class="menu_item"><a href="">home</a></li>    
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- main Navigation -->
+        <div class="page-wrapper" style="margin-top: 140px;">
+            <!-- End .header -->
+    
+            <main class="main">
+                <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+                    <div class="container">
+                        <h1 class="page-title">Shopping Cart<span>Shop</span></h1>
+                    </div><!-- End .container -->
+                </div><!-- End .page-header -->
+                <!-- End .breadcrumb-nav -->
+    
+                <div class="page-content">
+                    <div class="cart">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    <table class="table table-cart table-mobile">
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                                <th>Total</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+    
+                                        <tbody>
+                                            <tr>
+                                                <td class="product-col">
+                                                    <div class="product">
+                                                        <figure class="product-media">
+                                                            <a href="#">
+                                                                <img src="../image/IMG_20190801_201313.jpg" alt="Product image">
+                                                            </a>
+                                                        </figure>
+    
+                                                        <h3 class="product-title">
+                                                            <a href="#">Beige knitted elastic runner shoes</a>
+                                                        </h3><!-- End .product-title -->
+                                                    </div><!-- End .product -->
+                                                </td>
+                                                <td class="price-col">$84.00</td>
+                                                <td class="quantity-col">
+                                                    <div class="cart-product-quantity">
+                                                        <input type="number" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                                                    </div><!-- End .cart-product-quantity -->
+                                                </td>
+                                                <td class="total-col">$84.00</td>
+                                                <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="product-col">
+                                                    <div class="product">
+                                                        <figure class="product-media">
+                                                            <a href="#">
+                                                                <img src="../image/IMG_20190710_095822.jpg" alt="Product image">
+                                                            </a>
+                                                        </figure>
+    
+                                                        <h3 class="product-title">
+                                                            <a href="#">Blue utility pinafore denim dress</a>
+                                                        </h3><!-- End .product-title -->
+                                                    </div><!-- End .product -->
+                                                </td>
+                                                <td class="price-col">$76.00</td>
+                                                <td class="quantity-col">
+                                                    <div class="cart-product-quantity">
+                                                        <input type="number" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                                                    </div><!-- End .cart-product-quantity -->                                 
+                                                </td>
+                                                <td class="total-col">$76.00</td>
+                                                <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="product-col">
+                                                    <div class="product">
+                                                        <figure class="product-media">
+                                                            <a href="#">
+                                                                <img src="../image/IMG_20190710_095822.jpg" alt="Product image">
+                                                            </a>
+                                                        </figure>
+    
+                                                        <h3 class="product-title">
+                                                            <a href="#">Blue utility pinafore denim dress</a>
+                                                        </h3><!-- End .product-title -->
+                                                    </div><!-- End .product -->
+                                                </td>
+                                                <td class="price-col">$76.00</td>
+                                                <td class="quantity-col">
+                                                    <div class="cart-product-quantity">
+                                                        <input type="number" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                                                    </div><!-- End .cart-product-quantity -->                                 
+                                                </td>
+                                                <td class="total-col">$76.00</td>
+                                                <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="product-col">
+                                                    <div class="product">
+                                                        <figure class="product-media">
+                                                            <a href="#">
+                                                                <img src="../image/IMG_20190710_095822.jpg" alt="Product image">
+                                                            </a>
+                                                        </figure>
+    
+                                                        <h3 class="product-title">
+                                                            <a href="#">Blue utility pinafore denim dress</a>
+                                                        </h3><!-- End .product-title -->
+                                                    </div><!-- End .product -->
+                                                </td>
+                                                <td class="price-col">$76.00</td>
+                                                <td class="quantity-col">
+                                                    <div class="cart-product-quantity">
+                                                        <input type="number" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                                                    </div><!-- End .cart-product-quantity -->                                 
+                                                </td>
+                                                <td class="total-col">$76.00</td>
+                                                <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table><!-- End .table table-wishlist -->
+    
+                                    <div class="cart-bottom">
+                                        <div class="cart-discount">
+                                            <form action="#">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" required placeholder="coupon code">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-primary-2" type="submit"><i class="icon-long-arrow-right"></i></button>
+                                                    </div><!-- .End .input-group-append -->
+                                                </div><!-- End .input-group -->
+                                            </form>
+                                        </div><!-- End .cart-discount -->
+    
+                                        <a href="#" class="btn btn-outline-dark-2"><span>UPDATE CART</span><i class="icon-refresh"></i></a>
+                                    </div><!-- End .cart-bottom -->
+                                </div><!-- End .col-lg-9 -->
+                                <aside class="col-lg-3">
+                                    <div class="summary summary-cart">
+                                        <h3 class="summary-title">Cart Total</h3><!-- End .summary-title -->
+    
+                                        <table class="table table-summary">
+                                            <tbody>
+                                                <tr class="summary-subtotal">
+                                                    <td>Subtotal:</td>
+                                                    <td>$160.00</td>
+                                                </tr><!-- End .summary-subtotal -->
+                                                <tr class="summary-shipping">
+                                                    <td>Shipping:</td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+    
+                                                <tr class="summary-shipping-row">
+                                                    <td>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" id="free-shipping" name="shipping" class="custom-control-input">
+                                                            <label class="custom-control-label" for="free-shipping">Free Shipping</label>
+                                                        </div><!-- End .custom-control -->
+                                                    </td>
+                                                    <td>$0.00</td>
+                                                </tr><!-- End .summary-shipping-row -->
+    
+                                                <tr class="summary-shipping-row">
+                                                    <td>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" id="standart-shipping" name="shipping" class="custom-control-input">
+                                                            <label class="custom-control-label" for="standart-shipping">Standart:</label>
+                                                        </div><!-- End .custom-control -->
+                                                    </td>
+                                                    <td>$10.00</td>
+                                                </tr><!-- End .summary-shipping-row -->
+    
+                                                <tr class="summary-shipping-row">
+                                                    <td>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" id="express-shipping" name="shipping" class="custom-control-input">
+                                                            <label class="custom-control-label" for="express-shipping">Express:</label>
+                                                        </div><!-- End .custom-control -->
+                                                    </td>
+                                                    <td>$20.00</td>
+                                                </tr><!-- End .summary-shipping-row -->
+    
+                                             
+    
+                                                <tr class="summary-total">
+                                                    <td>Total:</td>
+                                                    <td>$160.00</td>
+                                                </tr><!-- End .summary-total -->
+                                            </tbody>
+                                        </table><!-- End .table table-summary -->
+    
+                                        <a href="checkout.html" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
+                                    </div><!-- End .summary -->
+    
+                                    <a href="category.html" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>
+                                </aside><!-- End .col-lg-3 -->
+                            </div><!-- End .row -->
+                        </div><!-- End .container -->
+                    </div><!-- End .cart -->
+                </div><!-- End .page-content -->
+            </main><!-- End .main -->
+    
+            <!-- End .footer -->
+        </div><!-- End .page-wrapper -->
+        
+    
+        <!-- Mobile Menu -->
+        <!-- End .mobil-menu-overlay -->
+    
+        <!-- End .mobile-menu-container -->
+    
+        <!-- Sign in / Register Modal -->
+        
+<!--Cart items details-->
+
+
+        <footer class="footer-section">
+            <div class="container">
+                <div class="footer-cta pt-5 pb-5">
+                    <div class="row">
+                        <div class="col-xl-4 col-md-4 mb-30">
+                            <div class="single-cta">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div class="cta-text">
+                                    <h4>Find us</h4>
+                                    <span>1010 Avenue, sw 54321, chandigarh</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-4 mb-30">
+                            <div class="single-cta">
+                                <i class="fas fa-phone"></i>
+                                <div class="cta-text">
+                                    <h4>Call us</h4>
+                                    <span>+254708073370</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-4 mb-30">
+                            <div class="single-cta">
+                                <i class="far fa-envelope-open"></i>
+                                <div class="cta-text">
+                                    <h4>Mail us</h4>
+                                    <a href="cyrilleotieno7@gmail.com"><span>cyrilleotieno7@gmail.com</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-content pt-5 pb-5">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-4 mb-50">
+                            <div class="footer-widget">
+                                <div class="footer-logo">
+                                    <a href="index.html"><img src="https://i.ibb.co/QDy827D/ak-logo.png" class="img-fluid" alt="logo"></a>
+                                </div>
+                                <div class="footer-text">
+                                    <p>Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do eiusmod tempor incididuntut consec tetur adipisicing
+                                    elit,Lorem ipsum dolor sit amet.</p>
+                                </div>
+                                <div class="footer-social-icon">
+                                    <span>Follow us</span>
+                                    <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
+                                    <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
+                                    <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                            <div class="footer-widget">
+                                <div class="footer-widget-heading">
+                                    <h3>Useful Links</h3>
+                                </div>
+                                <ul>
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">about</a></li>
+                                    <li><a href="#">services</a></li>
+                                    <li><a href="#">portfolio</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="#">About us</a></li>
+                                    <li><a href="#">Our Services</a></li>
+                                    <li><a href="#">Expert Team</a></li>
+                                    <li><a href="#">Contact us</a></li>
+                                    <li><a href="#">Latest News</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+                            <div class="footer-widget">
+                                <div class="footer-widget-heading">
+                                    <h3>Subscribe</h3>
+                                </div>
+                                <div class="footer-text mb-25">
+                                    <p>Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
+                                </div>
+                                <div class="subscribe-form">
+                                    <form action="#">
+                                        <input type="text" placeholder="Email Address">
+                                        <button><i class="fab fa-telegram-plane"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+                            <div class="copyright-text">
+                                <p>Copyright &copy; 2018, All Right Reserved <a href="https://codepen.io/anupkumar92/">Anup</a></p>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+                            <div class="footer-menu">
+                                <ul>
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">Terms</a></li>
+                                    <li><a href="#">Privacy</a></li>
+                                    <li><a href="#">Policy</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+ <!--end shopping-cart -->
+          
+    </div>
+    
+       <script src="../js/main.js"></script>
+</body>
+
+</html>
