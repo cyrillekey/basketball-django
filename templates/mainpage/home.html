@@ -1,6 +1,6 @@
 {% extends "base/base.html" %}
 {% load static%}
-
+{%block title%}Home{%endblock%}
 {% block content %}
 
 
@@ -129,19 +129,20 @@
   <!-- Card -->
   <div class="container">
     <div class="row" >
-        <div class="col-lg-3 col-md-6 col-12">
+    {% for product in products%}
+    <div class="col-lg-3 col-md-6 col-12">
             <!-- Start Single Product -->
             <div class="single-product">
                 <div class="product-image">
-                    <img src="{% static 'andre-hunter-RPKdvPcYAUo-unsplash.jpg' %}" alt="#">
+                    <img src="{{product.product_image}}" alt="#">
                     <div class="button">
-                        <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                        <a href=""  id="{{product.id}}" value="{{product.id}}" class="btn add-cart"><i class="lni lni-cart"></i> Add to Cart</a>
                     </div>
                 </div>
                 <div class="product-info">
-                    <span class="category">Laptop</span>
+                    <span class="category">{{product.category}}</span>
                     <h4 class="title">
-                        <a href="product-grids.html">Apple MacBook Air</a>
+                        <a href="product-grids.html">{{product.product_name}}</a>
                     </h4>
                     <ul class="review">
                         <li><i class="lni lni-star-filled"></i></li>
@@ -152,100 +153,20 @@
                         <li><span>5.0 Review(s)</span></li>
                     </ul>
                     <div class="price">
-                        <span>$899.00</span>
+                        <span>KES {{product.product_price}} </span>
                     </div>
                 </div>
             </div>
             <!-- End Single Product -->
         </div>
-        <div class="col-lg-3 col-md-6 col-12">
-            <!-- Start Single Product -->
-            <div class="single-product">
-                <div class="product-image">
-                    <img src="image/20210717_154929.jpg" alt="#">
-                    <div class="button">
-                        <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <span class="category">Laptop</span>
-                    <h4 class="title">
-                        <a href="product-grids.html">Apple MacBook Air</a>
-                    </h4>
-                    <ul class="review">
-                        <li><i class="lni lni-star-filled"></i></li>
-                        <li><i class="lni lni-star-filled"></i></li>
-                        <li><i class="lni lni-star-filled"></i></li>
-                        <li><i class="lni lni-star-filled"></i></li>
-                        <li><i class="lni lni-star-filled"></i></li>
-                        <li><span>5.0 Review(s)</span></li>
-                    </ul>
-                    <div class="price">
-                        <span>$899.00</span>
-                    </div>
-                </div>
-            </div>
-            <!-- End Single Product -->
-        </div>
-        <div class="col-lg-3 col-md-6 col-12">
-            <!-- Start Single Product -->
-            <div class="single-product">
-                <div class="product-image">
-                    <img src="image/20210717_154929.jpg" alt="#">
-                    <div class="button">
-                        <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <span class="category">Laptop</span>
-                    <h4 class="title">
-                        <a href="product-grids.html">Apple MacBook Air</a>
-                    </h4>
-                    <ul class="review">
-                        <li><i class="lni lni-star-filled"></i></li>
-                        <li><i class="lni lni-star-filled"></i></li>
-                        <li><i class="lni lni-star-filled"></i></li>
-                        <li><i class="lni lni-star-filled"></i></li>
-                        <li><i class="lni lni-star-filled"></i></li>
-                        <li><span>5.0 Review(s)</span></li>
-                    </ul>
-                    <div class="price">
-                        <span>$899.00</span>
-                    </div>
-                </div>
-            </div>
-            <!-- End Single Product -->
-        </div>
-        <div class="col-lg-3 col-md-6 col-12">
-            <!-- Start Single Product -->
-            <div class="single-product">
-                <div class="product-image">
-                    <img src="image/20210717_154929.jpg" alt="#">
-                    <span class="new-tag">New</span>
-                    <div class="button">
-                        <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <span class="category">Laptop</span>
-                    <h4 class="title">
-                        <a href="product-grids.html">Apple MacBook Air</a>
-                    </h4>
-                    <ul class="review">
-                        <li><i class="lni lni-star-filled"></i></li>
-                        <li><i class="lni lni-star-filled"></i></li>
-                        <li><i class="lni lni-star-filled"></i></li>
-                        <li><i class="lni lni-star-filled"></i></li>
-                        <li><i class="lni lni-star-filled"></i></li>
-                        <li><span>5.0 Review(s)</span></li>
-                    </ul>
-                    <div class="price">
-                        <span>$899.00</span>
-                    </div>
-                </div>
-            </div>
-            <!-- End Single Product -->
-        </div>
+    {%endfor%}
+        
+        
+        
+        
+        
+        
+        
     </div>
 </div>
     <div class="more_div">
@@ -348,4 +269,27 @@
                 </ul>
             </div>
         </section>
+        <script>
+        
+            $(document).on('click','.add-cart',function(e){
+               
+                e.preventDefault();
+                
+                $.ajax({
+                    type:'POST',
+                    url: '{% url "basket:basket_add" %}',
+                    data:{
+                        productid:$(this).attr('value'),
+                        csrfmiddlewaretoken: "{{csrf_token}}",
+                        action:'post'
+                    
+                },
+                success:function(json){
+                    alert($(this).attr('value'))
+                },
+                error: function(xhr,errmsg,err){}
+            });  
+                             
+            })
+        </script>
 {% endblock  %}    
