@@ -1,6 +1,10 @@
 from django.db import models
 
 # Create your models here.
+class ProductManager():
+    def get_queryset(self):
+        return super(ProductManager,self).get_queryset().filter(is_active=True)
+
 class Category(models.Model):
     category_name= models.CharField(max_length=255)
     category_type=models.CharField(max_length=255)
@@ -26,6 +30,8 @@ class Product(models.Model):
     product_size=models.CharField(max_length=255,choices=SIZE)  
     category=models.ForeignKey(Category,related_name='product',on_delete=models.CASCADE)
     created=models.DateTimeField(auto_now_add=True)
+    objects=models.Manager()
+    products=ProductManager()
     class Meta:
         verbose_name_plural="Products"
         ordering=('-created',)  

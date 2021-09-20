@@ -285,7 +285,8 @@
                     
                 },
                 success:function(json){
-                    alert($(this).attr('value'))
+                    $("#checkout_items").text(json.test)
+                    
                 },
                 error: function(xhr,errmsg,err){}
             });  

@@ -47,7 +47,7 @@
                     <div class="row">
                         <div class="col-lg-12 text-right">
                             <div class="logo-container">
-                                <a href="#">Sports<span>Jerseys</span></a>
+                                <a href="{% url 'home'%}">Sports<span>Jerseys</span></a>
                             </div>
                             <nav class="navbar">
                                 <ul class="navbar_menu">
@@ -75,8 +75,16 @@
                                     <li><a href=""><i class="fa fa-search" arial-hidden=true></i></a></li>
                                     <li><a href=""><i class="fa fa-user"></i></a></li>
                                     <li class="checkout">
-                                        <a href="#" id="cart" >
-                                            <i  class="fa fa-shopping-cart"></i> <span id="checkout_items" class="checkout_items">23</span>
+                                        <a href="{% url 'basket:basket_summary'%}" id="cart" >
+                                            <i  class="fa fa-shopping-cart"></i> <span id="checkout_items" class="checkout_items">
+                                                {% with quantity=basket|length %}
+                                                {% if quantity > 0 %}
+                                                        {{quantity}}
+                                                {% else %}
+                                                    0
+                                                {% endif %}
+                                            {% endwith %}
+                                            </span>
                                         </a>
                                     </li>
                                 </ul>
@@ -119,7 +127,7 @@
                     <div class="row">
                         <div class="col-lg-12 text-right">
                             <div class="logo-container">
-                                <a href="#">Sports<span>Jerseys</span></a>
+                                <a href="{% url 'home' %}">Sports<span>Jerseys</span></a>
                             </div>
                             <nav class="navbar">
                                 <ul class="navbar_menu">
@@ -146,8 +154,16 @@
                                 <ul class="navbar_user">
                                     <li><a href=""><i class="fa fa-search" arial-hidden=true></i></a></li>
                                     <li class="checkout">
-                                        <a href="#" id="cart" >
-                                            <i  class="fa fa-shopping-cart"></i> <span id="checkout_items" class="checkout_items">23</span>
+                                        <a href="{% url 'basket:basket_summary' %}" id="cart" >
+                                            <i  class="fa fa-shopping-cart"></i> <span id="checkout_items" class="checkout_items">
+                                            {% with quantity=basket|length %}
+                                                {% if quantity > 0 %}
+                                                        {{quantity}}
+                                                {% else %}
+                                                    0
+                                                {% endif %}
+                                            {% endwith %}
+                                            </span>
                                         </a>
                                     </li>
                                 </ul>
