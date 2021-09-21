@@ -21,7 +21,7 @@ class mpesa():
         response_json=json.loads(response.text)
         return ((response_json['access_token']))
 
-    def simulate_customer_to_account(self):
+    def simulate_customer_to_account(self,number,amount):
         
         timestamp=datetime.now()   
         
@@ -35,10 +35,10 @@ class mpesa():
             "Password": password,
             "Timestamp": datetime.now().strftime("%Y%m%d%H%M%S"),
             "TransactionType": "CustomerPayBillOnline",
-            "Amount": 1,
-            "PartyA": 254708374149,
-            "PartyB": 174379,
-            "PhoneNumber": 254708073370,
+            "Amount": amount,
+            "PartyA": number,
+            "PartyB": config("MPESA_SHORTCODE"),
+            "PhoneNumber": number,
             "CallBackURL": "https://mydomain.com/path",
             "AccountReference": "CompanyXLTD",
             "TransactionDesc": "Payment of X" 
@@ -46,13 +46,5 @@ class mpesa():
 
         response = requests.post('https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest', headers = headers, json = payload)
         response=json.loads(response.text)
-        print(response)
-        
-        
-
-
-mango=mpesa()
-#print(mango.get_token())
-print(mango.simulate_customer_to_account())
 
 

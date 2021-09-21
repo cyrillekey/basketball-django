@@ -142,7 +142,7 @@
                 <div class="product-info">
                     <span class="category">{{product.category}}</span>
                     <h4 class="title">
-                        <a href="product-grids.html">{{product.product_name}}</a>
+                        <a href="{% url 'mainpage:single' slug=product.product_slug %}">{{product.product_name}}</a>
                     </h4>
                     <ul class="review">
                         <li><i class="lni lni-star-filled"></i></li>

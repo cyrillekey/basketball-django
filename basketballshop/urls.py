@@ -10,5 +10,6 @@ urlpatterns = [
     path('login/',accountview.login_view,name='login'),
     path('signup/',accountview.signup_view,name='signup'),
     path('basket/',include('basket.urls',namespace='basket')),
+    path('mainpage/',include('mainpage.urls'),name='mainpage'),
 ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
