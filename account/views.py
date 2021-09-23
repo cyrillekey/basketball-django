@@ -1,15 +1,17 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import login,authenticate,logout
 from account.forms import RegistrationForm,AccountAuthentication
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
 def login_view(request):
     context={}
     
     user=request.user
     #check if user is authenticated and redirect to home page if authenticated otherwise login the user
     if user.is_authenticated:
-        return redirect('home')
+        return redirect('mainpage:home')
     #check is the request is a POST request if it is a post request check the details and log in the user otherwise show the login form 
     if request.POST:
         form=AccountAuthentication(request.POST)
@@ -21,7 +23,7 @@ def login_view(request):
             user=authenticate(email=email,password=password)
             if user:
                 login(request,user)
-                return redirect('home')
+                return redirect('mainpage:home')
         else:
              #if from is invalid redirect user back to form to fill it correctly
             context['loginform']=form      
@@ -48,7 +50,7 @@ def signup_view(request):
                 #use the password and email to create a session and redirect the user to the home page
                 account=authenticate(email=email,password=raw_password)
                 login(request,account)
-                return redirect('home')
+                return redirect('mainpage:home')
             else:
                 #form has some errors redirect the user to fill the form again
                 context['registration_form']=form        
@@ -60,9 +62,16 @@ def signup_view(request):
         return render(request, 'account/signup.html',context)
     else:
         #user is authenticated so redirect to the homepage
-        return redirect('home')                
+        return redirect('mainpage:home')                
               
 def logout_view(request):
     #destroy the current session and redirect user to homepage
     logout(request)
-    return redirect('home')        
+    return redirect('mainpage:home')        
+
+def account(request):
+    user=request.user
+    if user.is_authenticated:
+        return render(request,'account/account.html')    
+    else:
+        return redirect('login')    

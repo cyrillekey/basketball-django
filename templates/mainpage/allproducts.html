@@ -1,0 +1,128 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+    All Products
+{% endblock title %}    
+
+{% block content %}
+    <div class="product-view" style="margin-top:120px;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-14">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="product-view-top">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="product-search">
+                                        <input type="email" value="Search">
+                                        <button><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="product-short">
+                                        <div class="dropdown">
+                                            <div class="dropdown-toggle" data-toggle="dropdown">Product short by</div>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a href="#" class="dropdown-item">Newest</a>
+                                                <a href="#" class="dropdown-item">Popular</a>
+                                                <a href="#" class="dropdown-item">Most sale</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="product-price-range">
+                                        <div class="dropdown">
+                                            <div class="dropdown-toggle" data-toggle="dropdown">Product price range</div>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a href="#" class="dropdown-item">$0 to $50</a>
+                                                <a href="#" class="dropdown-item">$51 to $100</a>
+                                                <a href="#" class="dropdown-item">$101 to $150</a>
+                                                <a href="#" class="dropdown-item">$151 to $200</a>
+                                                <a href="#" class="dropdown-item">$201 to $250</a>
+                                                <a href="#" class="dropdown-item">$251 to $300</a>
+                                                <a href="#" class="dropdown-item">$301 to $350</a>
+                                                <a href="#" class="dropdown-item">$351 to $400</a>
+                                                <a href="#" class="dropdown-item">$401 to $450</a>
+                                                <a href="#" class="dropdown-item">$451 to $500</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% for product in products %}
+                        <div class="col-lg-3 col-md-6 col-12">
+    <!-- Start Single Product -->
+    <div class="single-product">
+        <div class="product-image">
+            <img src="{product.product_image}" alt="#">
+            <div class="button">
+                <a href="" value={{product.id}} class="btn add-cart"><i class="lni lni-cart"></i> Add to Cart</a>
+            </div>
+        </div>
+        <div class="product-info">
+            <span class="category">{{product.category}}</span>
+            <h4 class="title">
+                <a href="{% url 'mainpage:single' slug=product.product_slug %}">{{product.product_name}}</a>
+            </h4>
+            <ul class="review">
+                <li><i class="lni lni-star-filled"></i></li>
+                <li><i class="lni lni-star-filled"></i></li>
+                <li><i class="lni lni-star-filled"></i></li>
+                <li><i class="lni lni-star-filled"></i></li>
+                <li><i class="lni lni-star-filled"></i></li>
+                <li><span>5.0 Review(s)</span></li>
+            </ul>
+            <div class="price">
+                <span>KES {{product.product_price}}</span>
+            </div>
+        </div>
+    </div>
+    <!-- End Single Product -->
+</div>
+                    {% endfor %}
+                    
+
+
+
+
+
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </div>
+                
+                <!-- Pagination Start -->
+                <div class="col-md-12" style="margin-top: 20px;">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- Pagination Start -->
+            </div>           
+            
+            <!-- Side Bar Start -->
+            
+            <!-- Side Bar End -->
+        </div>
+    </div>
+</div>
+{% endblock content %}  

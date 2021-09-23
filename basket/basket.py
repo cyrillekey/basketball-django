@@ -20,8 +20,7 @@ class Basket():
                 self.basket.update({str(product_id):{'price':str(product.product_price),'qty':int(qty)}})
                 print(self.basket)   
         
-        
-        self.session.modified=True 
+        self.save()        
     """
     To get the total number of items in the basket
     """     
@@ -53,3 +52,13 @@ class Basket():
         qty-=1 
         self.basket.update({str(product_id):{'qty':int(qty)}})
         print(self.basket)
+    def delete(self,product):
+        product_id=(product)
+        if product_id in self.basket:
+            del self.basket[product_id]
+        print(self.basket)    
+        self.save()
+
+    def save(self):
+        self.session.modified=True 
+

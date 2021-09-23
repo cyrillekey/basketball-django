@@ -6,5 +6,6 @@ app_name = 'basket'
 urlpatterns=[
     path('',views.basket_summary,name='basket_summary'),
     path('add/',views.basket_add,name='basket_add'),
+    path('basket_delete',views.basket_delete,name='basket_delete')
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

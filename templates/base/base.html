@@ -47,7 +47,7 @@
                     <div class="row">
                         <div class="col-lg-12 text-right">
                             <div class="logo-container">
-                                <a href="{% url 'home'%}">Sports<span>Jerseys</span></a>
+                                <a href="{% url 'mainpage:home'%}">Sports<span>Jerseys</span></a>
                             </div>
                             <nav class="navbar">
                                 <ul class="navbar_menu">
@@ -73,7 +73,7 @@
                                 </ul>
                                 <ul class="navbar_user">
                                     <li><a href=""><i class="fa fa-search" arial-hidden=true></i></a></li>
-                                    <li><a href=""><i class="fa fa-user"></i></a></li>
+                                    <li><a href="{%url 'account' %}"><i class="fa fa-user"></i></a></li>
                                     <li class="checkout">
                                         <a href="{% url 'basket:basket_summary'%}" id="cart" >
                                             <i  class="fa fa-shopping-cart"></i> <span id="checkout_items" class="checkout_items">
@@ -127,7 +127,7 @@
                     <div class="row">
                         <div class="col-lg-12 text-right">
                             <div class="logo-container">
-                                <a href="{% url 'home' %}">Sports<span>Jerseys</span></a>
+                                <a href="{% url 'mainpage:home' %}">Sports<span>Jerseys</span></a>
                             </div>
                             <nav class="navbar">
                                 <ul class="navbar_menu">
@@ -320,6 +320,55 @@
  <!--end shopping-cart -->
           
     </div>
+    <script>
+        $(document).on('click','.add-cart',function(e){
+               
+    e.preventDefault();
+    productid=$(this).attr('value')
+    $.ajax({
+        type:'POST',
+        url: '{% url "basket:basket_add" %}',
+        data:{
+            productid:productid,
+            csrfmiddlewaretoken: "{{csrf_token}}",
+            action:'post'
+        
+    },
+    success:function(json){
+        $("#checkout_items").text(json.test);
+        
+        
+    },
+    error: function(xhr,errmsg,err){}
+});  
+                 
+});
+      $(document).on('click','.btn-remove',function(e){
+               
+    e.preventDefault();
+    prodid=$(this).attr('id')
+    
+    $.ajax({
+        type:'POST',
+        url: '{% url "basket:basket_delete" %}',
+        data:{
+            productid:prodid,
+            csrfmiddlewaretoken: "{{csrf_token}}",
+            action:'post'
+        
+    },
+    success:function(json){
+        $("#checkout_items").text(json.test)
+        $('#sepic[data-index="'+prodid+'"]').remove();
+        
+    },
+    error: function(xhr,errmsg,err){}
+});  
+                 
+})
+
+    </script>
+    
     <script type="text/javascript">
         //========= Hero Slider 
         tns({

@@ -19,3 +19,12 @@ def basket_add(request):
 
         response=JsonResponse({'test':size})
         return response
+def basket_delete(request):
+    basket=Basket(request)
+    if request.POST.get('action')=='post':
+        product_id=(request.POST.get('productid'))
+        basket.delete(product=product_id)
+        size=basket.__len__()
+        response=JsonResponse({'test':size})
+        return response
+
