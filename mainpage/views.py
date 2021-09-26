@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,HttpResponse
-from base.models import Product
+from base.models import Product,Category
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 # Create your views here.
 def home(requests):
@@ -17,15 +17,19 @@ def allproducts(request):
     page=request.GET.get('page',1)
     product=Product.objects.all()
     paginator=Paginator(product,12)
+    categories=Category.objects.all()
     try:
         product_page=paginator.page(page)
     except PageNotAnInteger:
         product_page=paginator.page(1)
     except EmptyPage:
         product_page=paginator.page(paginator.num_pages)    
-    return render(request,'mainpage/allproducts.html',{'products':product_page})     
+    print(categories)    
+    return render(request,'mainpage/allproducts.html',{'products':product_page,'categories':categories})     
 def search(request):
+    
     searchword=request.GET.get('searchword')
     product=Product.objects.filter(product_name__icontains=searchword)
+   
     return render(request,'mainpage/allproducts.html',{'products':product})     
        
