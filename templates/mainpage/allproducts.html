@@ -15,8 +15,10 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="product-search">
-                                        <input type="email" value="Search">
+                                    <form action="{% url 'mainpage:search' %}">
+                                        <input type="Text" Placeholder="Search" name='searchword'>
                                         <button><i class="fa fa-search"></i></button>
+                                    </form>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -58,7 +60,7 @@
     <!-- Start Single Product -->
     <div class="single-product">
         <div class="product-image">
-            <img src="{{MEDIA_URL}}{{product.product_image}}" alt="#">
+            <img src="{{MEDIA_URL}}{{product.product_image}}" style="height:50vh;"alt="#">
             <div class="button">
                 <a href="" value={{product.id}} class="btn add-cart"><i class="lni lni-cart"></i> Add to Cart</a>
             </div>
@@ -83,39 +85,46 @@
     </div>
     <!-- End Single Product -->
 </div>
-                    {% endfor %}
-                    
-
-
-
-
-
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+                    {% endfor %}                    
                 </div>
                 
                 <!-- Pagination Start -->
+                {%if products.has_other_pages%}
+
                 <div class="col-md-12" style="margin-top: 20px;">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
+                            
+                            {% if products.has_previous %}
+                                <li class="page-item ">
+                            <a class="page-link" href="?page={{products.previous_page_number}}" tabindex="-1">Previous</a>
+                            </li>
+                            {% else %}
                             <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            <a class="page-link" href="" tabindex="-1">Previous</a>
                             </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
+                            {% endif %}
+                                {% for i in products.paginator.page_range %}
+                                    {% if products.number == i %}
+                                        <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>        
+                                    {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if products.has_next %}
+                                    <li class="page-item">
+                                <a class="page-link" href="?page={{products.next_page_number}}">Next</a>
+                            </li>    
+                                {% else %}
+                                <li class="page-item disabled" >
+                                <a class="page-link" href="">Next</a>
                             </li>
+                                {% endif %}
+                            
                         </ul>
                     </nav>
                 </div>
+                {%endif%}
                 <!-- Pagination Start -->
             </div>           
             

@@ -336,7 +336,8 @@
     },
     success:function(json){
         $("#checkout_items").text(json.test);
-        
+        $('.add-cart').html('<i class="fa-solid fa-check"></i><span>Added To Cart</span>')
+        setTimeout(function(){$('.add-cart').text('Add to Cart')},1000)
         
     },
     error: function(xhr,errmsg,err){}
