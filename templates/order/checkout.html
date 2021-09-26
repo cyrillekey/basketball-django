@@ -1,3 +1,4 @@
+{% load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
-    <link rel="stylesheet" href="../css/materialize.min.css">
+    <link rel="stylesheet" href="{% static 'materialize.min.css'%}">
    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/css/swiper.min.css">-->
-    <link rel="stylesheet" href="../css/checkout.css">
+    <link rel="stylesheet" href="{% static 'checkout.css' %}">
     <link rel="stylesheet" href="../css/font-awesome.css">
 
 </head>
@@ -39,35 +40,32 @@
                     <form class="col s12">
                       <div class="row">
                         <div class="input-field col s12 l6 m-top-15">
-                          <input id="first_name" @blur="$v.name.$touch()" :class="{'invalid': $v.name.$error}" v-model="name" type="text" autocomplete="name">
-                          <label for="first_name">Full name</label>
-                          <span v-if="$v.name.$error" class="helper-text" data-error="Please fill out full name">Helper text</span>
+                          <input id="first_name" @blur="$v.name.$touch()"  v-model="name" type="text" autocomplete="OFF">
+                          
+                          <span v-if="" class="helper-text" data-error="Please fill out full name">Full Names</span>
       
                         </div>
                         <div class="input-field col s12 l6 m-top-15">
                           <input id="company" v-on:blur="setCompanyShipping" v-model="company" type="text" class="validate">
-                          <label for="company">Company (optional)</label>
-                          <span v-if="$v.name.$error" class="helper-text" data-error="Please fill out full name">Destonation</span>
+                          
+                          <span v-if="$v.name.$error" class="helper-text" data-error="Please fill out full name">Destination</span>
                         </div>
                       </div>
                       <div class="row m-top-15">
                         <div class="input-field col s12 autocomplete-container">
                           <input class="js-autocomplete-input" id="dawa-autocomplete-input" @blur="$v.address.$touch()" :class="{'invalid': $v.address.$error}" v-model="addressInput" type="url" class="validate" autocomplete="false">
-                          <label for="dawa-autocomplete-input">Full address</label>
-                          <span v-if="$v.address.$error" class="helper-text" data-error="Please fill out full address">Helper text</span>
+                          <span v-if="$v.address.$error" class="helper-text" data-error="Please fill out full address">Full address</span>
                         </div>
                       </div>
                       <div class="row">
                         <div class="input-field col s12 l6 m-top-15">
                           <input @blur="$v.email.$touch()" :class="{'invalid': $v.email.$error}" id="email" v-model="email" type="text" class="validate" autocomplete="email">
-                          <label for="email">Email</label>
-                          <span v-if="$v.email.$error" class="helper-text" data-error="Please fill out email">Helper text</span>
+                          <span v-if="$v.email.$error" class="helper-text" data-error="Please fill out email">Email</span>
                         </div>
                         <div class="input-field col s12 l6 m-top-15">
                           <input @blur="$v.phone.$touch()" :class="{'invalid': $v.phone.$error}" id="phone" v-model="phone" type="text" class="validate" autocomplete="tel">
-                          <label for="phone">Phone
-                          </label>
-                          <span v-if="$v.phone.$error" class="helper-text" data-error="Please fill out phone">Helper text</span>
+                          
+                          <span v-if="$v.phone.$error" class="helper-text" data-error="Please fill out phone">Phone Number</span>
                         </div>
                       </div>
                       <label class="d-block m-top-15">

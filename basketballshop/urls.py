@@ -13,6 +13,7 @@ urlpatterns = [
     path('signup/',accountview.signup_view,name='signup'),
     path('basket/',include('basket.urls',namespace='basket')),
     path("",include('mainpage.urls',namespace='mainpage')),
+    path("checkout/",include("order.urls",namespace="order"))
 
    
     
