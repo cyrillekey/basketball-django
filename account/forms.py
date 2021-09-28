@@ -38,3 +38,12 @@ class AccountAuthentication(forms.ModelForm):
                 raise forms.ValidationError("Invalid login details")    
 
 
+class Addressform(forms.ModelForm):
+    fullnames=forms.CharField(max_length=50,widget=forms.TextInput(attrs={'placeholder':'Enter Full Names'}))
+    county=forms.CharField(max_length=50,widgets=forms.TextInput(attrs={'placeholder':'Enter County Name'}))
+    city=forms.CharField(max_length=50,widget=forms.TextInput(attrs={'placeholder':'Enter City Name'}))
+    area=forms.CharField(max_length=50,widget=forms.TextInput(attrs={'placeholder':'Enter Area Name'}))
+    email=forms.EmailField(widget=forms.EmailField(attrs={'placeholder':'Enter Email Address'}))
+    phone_number=forms.CharField(max_length=14,widget=forms.TextInput(attrs={'placeholder':'Enter Phone Number'}))
+    class Meta:
+        fields=('fullnames','county','city','area','email','phone')

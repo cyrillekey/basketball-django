@@ -147,63 +147,34 @@
                     </div>
                   </div>
                   <span class="card-title activator grey-text text-darken-4 m-top-15"><b>Your order</b></span>
-                  <span><b>25 items</b></span>
+                  <span><b>25 Items</b></span>
                   <ul class="collection">
+                  {% for item in basket %}
+                  {% with product=item.product %}
+                  
+                  
                     <li class="collection-item avatar" ref="item-1" v-for="(product, index) in products">
-                      <img src="../image/IMG_20190728_192746.jpg" alt="" class="circle">
+                      <img src="{{MEDIA_URL}}{{product.product_image}}" alt="" class="circle">
                       <div class="row">
                         <div class="col s12 l4">
-                          <span class="title">Mango</span>
-                          <p>$1</p>
+                          <span class="title">{{product.product_name}}</span>
+                          <p>KES {{product.product_price}}</p>
                         </div>
                       </div>
                       <a href="#!" class="secondary-content"><i class="material-icons" v-on:click="deleteItem(product.id)">clear</i></a>
                     </li>
-                    <li class="collection-item avatar" ref="item-1" v-for="(product, index) in products">
-                        <img src="../image/IMG_20190728_192746.jpg" alt="" class="circle">
-                        <div class="row">
-                          <div class="col s12 l4">
-                            <span class="title">Mango</span>
-                            <p>$1</p>
-                          </div>
-                        </div>
-                        <a href="#!" class="secondary-content"><i class="material-icons" v-on:click="deleteItem(product.id)">clear</i></a>
-                      </li>
-                      <li class="collection-item avatar" ref="item-1" v-for="(product, index) in products">
-                        <img src="../image/IMG_20190728_192746.jpg" alt="" class="circle">
-                        <div class="row">
-                          <div class="col s12 l4">
-                            <span class="title">Mango</span>
-                            <p>$1</p>
-                          </div>
-                        </div>
-                        <a href="#!" class="secondary-content"><i class="material-icons" v-on:click="deleteItem(product.id)">clear</i></a>
-                      </li>
-                      <li class="collection-item avatar" ref="item-1" v-for="(product, index) in products">
-                        <img src="../image/IMG_20190728_192746.jpg" alt="" class="circle">
-                        <div class="row">
-                          <div class="col s12 l4">
-                            <span class="title">Mango</span>
-                            <p>$1</p>
-                          </div>
-                        </div>
-                        <a href="#!" class="secondary-content"><i class="material-icons" v-on:click="deleteItem(product.id)">clear</i></a>
-                      </li>
-                      <li class="collection-item avatar" ref="item-1" v-for="(product, index) in products">
-                        <img src="../image/IMG_20190728_192746.jpg" alt="" class="circle">
-                        <div class="row">
-                          <div class="col s12 l4">
-                            <span class="title">Mango</span>
-                            <p>$1</p>
-                          </div>
-                        </div>
-                        <a href="#!" class="secondary-content"><i class="material-icons" v-on:click="deleteItem(product.id)">clear</i></a>
-                      </li>
+                    {% endwith %}
+                  {% endfor %}
+                    
+                    
+                      
+                      
+                      
                   </ul>
                   <ul>
                     <li v-if="shipping">
                       <span><b>Shipping</b> <i>Pickup</i></span>
-                      <span class="right">$1000</span>
+                      <span class="right">KES {{basket.get_total_price}}</span>
                     </li>
                     <li v-if="taxTotal">
                       <span><b>TAX</b></span>
@@ -213,7 +184,7 @@
                 </div>
                 <div class="card-action" v-if="basketTotal">
                   <span><b>Total</b></span>
-                  <span class="right"><b>$1200</b></span>
+                  <span class="right"><b>KES {{basket.get_total_price}}</b></span>
                 </div>
                 <div class="card-action">
                   <span class="card-title activator grey-text text-darken-4"><b>Payment</b></span>

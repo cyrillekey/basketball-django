@@ -8,6 +8,7 @@ class mpesa():
         self.userpassword=config('MPESA_CONSUMER_KEY')+':'+config('MPESA_CONSUMER_SECRET_KEY')
         self.secretkey=self.userpassword.encode("ascii")
         self.secretkey=base64.b64encode(self.secretkey).decode("utf-8")
+        self.get_token()
     def get_token(self):
 
         url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
@@ -46,5 +47,3 @@ class mpesa():
 
         response = requests.post('https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest', headers = headers, json = payload)
         response=json.loads(response.text)
-
-

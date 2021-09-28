@@ -83,3 +83,13 @@ class Account(AbstractBaseUser):
         return self.is_admin
     def has_module_perms(self,app_label):
         return True 
+class shipping(models.Model):
+    fullnames=models.CharField(max_length=50)
+    county=models.CharField(max_length=50)
+    city=models.CharField(max_length=50)
+    area=models.CharField(max_length=50)
+    email=models.EmailField()
+    phone_number=models.CharField(max_length=14)
+    user=models.ForeignKey(Account,on_delete=models.CASCADE)
+    def __str__(self):
+        return self.fullnames
