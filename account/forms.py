@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm,authenticate
-from account.models import Account
+from account.models import Account,shipping
 class RegistrationForm(UserCreationForm):
     """
     Set the fields that will be needed when a user needs to register
@@ -40,10 +40,11 @@ class AccountAuthentication(forms.ModelForm):
 
 class Addressform(forms.ModelForm):
     fullnames=forms.CharField(max_length=50,widget=forms.TextInput(attrs={'placeholder':'Enter Full Names'}))
-    county=forms.CharField(max_length=50,widgets=forms.TextInput(attrs={'placeholder':'Enter County Name'}))
+    county=forms.CharField(max_length=50,widget=forms.TextInput(attrs={'placeholder':'Enter County Name'}))
     city=forms.CharField(max_length=50,widget=forms.TextInput(attrs={'placeholder':'Enter City Name'}))
     area=forms.CharField(max_length=50,widget=forms.TextInput(attrs={'placeholder':'Enter Area Name'}))
-    email=forms.EmailField(widget=forms.EmailField(attrs={'placeholder':'Enter Email Address'}))
+    email=forms.EmailField(widget=forms.TextInput(attrs={'placeholder':'Enter Email Address'}))
     phone_number=forms.CharField(max_length=14,widget=forms.TextInput(attrs={'placeholder':'Enter Phone Number'}))
     class Meta:
-        fields=('fullnames','county','city','area','email','phone')
+        model=shipping
+        fields=('fullnames','county','city','area','email','phone_number')

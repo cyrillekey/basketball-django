@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="{% static 'materialize.min.css'%}">
    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/css/swiper.min.css">-->
     <link rel="stylesheet" href="{% static 'checkout.css' %}">
-    <link rel="stylesheet" href="../css/font-awesome.css">
+
+    
+
 
 </head>
 <body>
@@ -38,37 +40,16 @@
                   <span class="card-title activator grey-text text-darken-4"><b>Information</b></span>
                   <div class="row m-top-15">
                     <form class="col s12">
-                      <div class="row">
+                      {%csrf_token%}
+                      {% for field in addressform %}
+                         <div class="row">
                         <div class="input-field col s12 l6 m-top-15">
-                          <input id="first_name" @blur="$v.name.$touch()"  v-model="name" type="text" autocomplete="OFF">
-                          
-                          <span v-if="" class="helper-text" data-error="Please fill out full name">Full Names</span>
-      
+                          {{field}}
                         </div>
-                        <div class="input-field col s12 l6 m-top-15">
-                          <input id="company" v-on:blur="setCompanyShipping" v-model="company" type="text" class="validate">
-                          
-                          <span v-if="$v.name.$error" class="helper-text" data-error="Please fill out full name">Destination</span>
-                        </div>
+                        
                       </div>
-                      <div class="row m-top-15">
-                        <div class="input-field col s12 autocomplete-container">
-                          <input class="js-autocomplete-input" id="dawa-autocomplete-input" @blur="$v.address.$touch()" :class="{'invalid': $v.address.$error}" v-model="addressInput" type="url" class="validate" autocomplete="false">
-                          <span v-if="$v.address.$error" class="helper-text" data-error="Please fill out full address">Full address</span>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="input-field col s12 l6 m-top-15">
-                          <input @blur="$v.email.$touch()" :class="{'invalid': $v.email.$error}" id="email" v-model="email" type="text" class="validate" autocomplete="email">
-                          <span v-if="$v.email.$error" class="helper-text" data-error="Please fill out email">Email</span>
-                        </div>
-                        <div class="input-field col s12 l6 m-top-15">
-                          <input @blur="$v.phone.$touch()" :class="{'invalid': $v.phone.$error}" id="phone" v-model="phone" type="text" class="validate" autocomplete="tel">
-                          
-                          <span v-if="$v.phone.$error" class="helper-text" data-error="Please fill out phone">Phone Number</span>
-                        </div>
-                      </div>
-                      <label class="d-block m-top-15">
+                      {% endfor %}
+                            <label class="d-block m-top-15">
                         <input type="checkbox" v-model="showAlternative" class="filled-in" />
                         <span>Save for future</span>
                       </label>
@@ -147,13 +128,16 @@
                     </div>
                   </div>
                   <span class="card-title activator grey-text text-darken-4 m-top-15"><b>Your order</b></span>
-                  <span><b>25 Items</b></span>
+                  <span><b>
+                  {{item}}
+                  
+                   Items</b></span>
                   <ul class="collection">
                   {% for item in basket %}
                   {% with product=item.product %}
                   
                   
-                    <li class="collection-item avatar" ref="item-1" v-for="(product, index) in products">
+                    <li class="collection-item avatar" id="sepic" data-index="{{product.id}}">
                       <img src="{{MEDIA_URL}}{{product.product_image}}" alt="" class="circle">
                       <div class="row">
                         <div class="col s12 l4">
@@ -161,7 +145,7 @@
                           <p>KES {{product.product_price}}</p>
                         </div>
                       </div>
-                      <a href="#!" class="secondary-content"><i class="material-icons" v-on:click="deleteItem(product.id)">clear</i></a>
+                      <a href="#" id="{{product.id}}" class="btn-remove secondary-content"><i class="material-icons">clear</i></a>
                     </li>
                     {% endwith %}
                   {% endfor %}
@@ -214,5 +198,30 @@
           </div>
         </div>
       </div>
+      <script src="{% static 'jquery.min.js' %}"></script>
+      <script>
+      $(document).on('click','.btn-remove',function(e){
+               
+    e.preventDefault();
+    prodid=$(this).attr('id')
+    
+    $.ajax({
+        type:'POST',
+        url: '{% url "basket:basket_delete" %}',
+        data:{
+            productid:prodid,
+            csrfmiddlewaretoken: "{{csrf_token}}",
+            action:'post'
+        
+    },
+    success:function(json){
+        $("#checkout_items").text(json.test)
+        $('#sepic[data-index="'+prodid+'"]').remove();
+        window.location.href=window.location.href
+        
+    },
+    error: function(xhr,errmsg,err){}
+}); })
+      </script>
 </body>
 </html>
