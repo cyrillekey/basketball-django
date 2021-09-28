@@ -27,7 +27,7 @@
                                             <div class="dropdown-toggle one" data-toggle="dropdown">Product short by</div>
                                             <div class="dropdown-menu dropdown-menu-right">
                                             {% for category in categories %}
-                                                <a href="" class="dropdown-item">{{category.category_name}}</a>
+                                                <a href="{%url 'mainpage:product_filter' filtername=category.id%}" class="dropdown-item">{{category.category_name}}</a>
                                             {% endfor %}
                                                 
                                                 
@@ -40,8 +40,8 @@
                                         <div class="dropdown">
                                             <div class="dropdown-toggle" data-toggle="dropdown">Product price range</div>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Lowest Price-Highest</a>
-                                                <a href="#" class="dropdown-item">Highest Price-Lowes</a>
+                                                <a href="{%url 'mainpage:product_filter' filtername='lowest' %}" class="dropdown-item">Lowest Price-Highest</a>
+                                                <a href="{% url 'mainpage:product_filter' filtername='highest' %}" class="dropdown-item">Highest Price-Lowes</a>
 
                                             </div>
                                         </div>

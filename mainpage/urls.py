@@ -9,6 +9,7 @@ urlpatterns=[
     path('single/<slug>/',views.singleproduct,name='single'),
     path('faq/',views.faq,name='faq'),
     path('allproduct/',views.allproducts,name='allproducts'),
-    path('search/',views.search,name="search")
+    path('search/',views.search,name="search"),
+    path('filter/<filtername>/',views.filter,name="product_filter")
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

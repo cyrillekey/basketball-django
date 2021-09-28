@@ -32,4 +32,43 @@ def search(request):
     product=Product.objects.filter(product_name__icontains=searchword)
    
     return render(request,'mainpage/allproducts.html',{'products':product})     
-       
+def filter(request,filtername):
+    if filtername=="lowest":
+        page=request.GET.get('page',1)
+        product=Product.objects.all().order_by("product_price")
+        paginator=Paginator(product,12)
+        categories=Category.objects.all()
+        try:
+            product_page=paginator.page(page)
+        except PageNotAnInteger:
+            product_page=paginator.page(1)
+        except EmptyPage:
+            product_page=paginator.page(paginator.num_pages)    
+        print(categories)    
+        return render(request,'mainpage/allproducts.html',{'products':product_page,'categories':categories})  
+    elif filtername=='highest':
+        page=request.GET.get('page',1)
+        product=Product.objects.all().order_by("-product_price")
+        paginator=Paginator(product,12)
+        categories=Category.objects.all()
+        try:
+            product_page=paginator.page(page)
+        except PageNotAnInteger:
+            product_page=paginator.page(1)
+        except EmptyPage:
+            product_page=paginator.page(paginator.num_pages)    
+        print(categories)    
+        return render(request,'mainpage/allproducts.html',{'products':product_page,'categories':categories})  
+    else:
+        page=request.GET.get('page',1)
+        product=Product.objects.filter(category=filtername)
+        paginator=Paginator(product,12)
+        categories=Category.objects.all()
+        try:
+            product_page=paginator.page(page)
+        except PageNotAnInteger:
+            product_page=paginator.page(1)
+        except EmptyPage:
+            product_page=paginator.page(paginator.num_pages)    
+        print(categories)    
+        return render(request,'mainpage/allproducts.html',{'products':product_page,'categories':categories})      
