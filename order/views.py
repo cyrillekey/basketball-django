@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 
-# Create your views here.
+# Create your views here
+#.
 def checkout(request):
-    return render(request,"order/checkout.html")
+    if request.user.is_authenticated:
+        return render(request,"order/checkout.html")
+    else:    
+        return redirect('login')
