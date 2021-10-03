@@ -2133,7 +2133,7 @@ top: 2px;
      }
   
     
-}
+}/*
 .main_nav_container h6{
     margin-bottom: 23px;
 
@@ -2145,7 +2145,7 @@ top: 2px;
 .red_button a{
     font-size: 12px;
 }
-
+*/
 @media only screen and (max-width: 575px) {
     .hamburger_menu{
         right: -100%;
@@ -2167,6 +2167,7 @@ top: 2px;
 @media only screen and (max-width: 479px) {
     .logo-container a{
         font-size: 12px;
+        
     }
     .hamburger_container{
         margin-left: 25px;
@@ -2191,9 +2192,27 @@ top: 2px;
       transform: translate(-5%);
   
   }
+
  
     
 }
+@media only screen and (max-width: 400px) {
+  .navbar_user{
+    border: solid red;
+  }
+  .hamburger_container{
+    border: solid black;
+    height: 40px;
+    width: 40px;
+  }
+  #bars{
+    border: solid green;
+  }
+  #search{
+    border: solid pink;
+  }
+}
+
 /**cart***/
 /*==================================================================
         FOOTER

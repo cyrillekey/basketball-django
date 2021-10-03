@@ -4,9 +4,9 @@
 {% endblock title %}
 {% block content %}
 
-        <div class="account">
+        <div class="account" >
             <div id="page-content-wrapper" class="p-9">
-                <div class="container">
+                <div class="container" style="margin-bottom:40px;">
                     <div class="row">
                         <div class="col-lg-12">
                             <!-- My Account Page Start -->
@@ -39,8 +39,8 @@
                                                     <h3>Dashboard</h3>
             
                                                     <div class="welcome">
-                                                        <p>Hello, <strong>Alex Tuntuni</strong> (If Not <strong>Tuntuni !</strong><a
-                                                                href="login-register.html" class="logout"> Logout</a>)</p>
+                                                        <p>Hello, <strong>{{user.username}}</strong> (If Not <strong>{{user.username}} !</strong><a
+                                                                href="{% url 'logout'%}" class="logout"> Logout</a>)</p>
                                                     </div>
             
                                                     <p class="mb-0">From your account dashboard. you can easily check & view your
