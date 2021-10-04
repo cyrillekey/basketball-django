@@ -258,9 +258,9 @@ h1,h2,h3,h4,h5,h6{
 
 }
 .hamburger_container i{
-    font-size: 24px;
+    font-size: 30px;
     color: #1e1e27;
-    transition: all 300ms ease;
+    /*transition: all 300ms ease;*/
 
 }
 .hamburger_container i:hover{
@@ -2195,15 +2195,14 @@ top: 2px;
 
  
     
-}
+}/*
 @media only screen and (max-width: 400px) {
   .navbar_user{
     border: solid red;
   }
   .hamburger_container{
-    border: solid black;
-    height: 40px;
-    width: 40px;
+    border: solid rgb(192, 32, 32);
+    
   }
   #bars{
     border: solid green;
@@ -3611,4 +3610,7 @@ margin-top: -7px;
 
 .feature-area .single-feature-2 p {
   margin-bottom: -5px;
+}
+.review{
+  color: gold;
 }
