@@ -1,6 +1,7 @@
 from django.db import models
-
+import requests
 # Create your models here.
+
 class ProductManager():
     def get_queryset(self):
         return super(ProductManager,self).get_queryset().filter(is_active=True)
@@ -41,4 +42,7 @@ class Product(models.Model):
     def __str__(self):
         return self.product_name
 
-
+def facebook():
+    response=requests.get(
+        "https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&client_id=APP-ID&client_secret=APP-SECRET&fb_exchange_token=SHORT-LIVED-USER-ACCESS-TOKEN"
+        )
