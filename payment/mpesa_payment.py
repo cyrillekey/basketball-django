@@ -40,7 +40,7 @@ class mpesa():
             "PartyA": number,
             "PartyB": config("MPESA_SHORTCODE"),
             "PhoneNumber": number,
-            "CallBackURL": "https://284c-197-232-61-249.ngrok.io/mpesacall/",
+            "CallBackURL": "https://f3a3-41-212-104-46.ngrok.io/mpesacall/",
             "AccountReference": "CompanyXLTD",
             "TransactionDesc": "Payment of X" 
         }

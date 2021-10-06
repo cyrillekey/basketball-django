@@ -9,4 +9,4 @@ class Paymentinfo(models.Model):
     payment_status=models.BooleanField()
     order_id=models.ForeignKey(Order,on_delete=models.CASCADE)
     paymnet_date=models.DateTimeField(auto_now=True)
-    request_id=models.CharField(max_length=52,unique=True)
+    #request_id=models.CharField(max_length=52,unique=True)

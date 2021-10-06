@@ -33,7 +33,7 @@ def add(request):
         form=Addressform(request.POST)
         if form.is_valid():
             mpesa=mpesa_payment.mpesa()
-            order_key=mpesa.simulate_customer_to_account(254708073370,baskettotal)
+            order_key=mpesa.simulate_customer_to_account(254708073370,10)
             print(order_key)
             fullname=form.cleaned_data['fullnames']
             county=form.cleaned_data['county']
