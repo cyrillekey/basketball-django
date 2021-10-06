@@ -47,6 +47,6 @@ class mpesa():
 
         response = requests.post('https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest', headers = headers, json = payload)
         response=json.loads(response.text)
-        print(response['MerchantRequestID'])
+        return (response['MerchantRequestID'])
 mpesa1=mpesa()
 mpesa1.simulate_customer_to_account(254708073370,12)

@@ -39,6 +39,7 @@ class AccountAuthentication(forms.ModelForm):
 
 
 class Addressform(forms.ModelForm):
+
     fullnames=forms.CharField(max_length=50,widget=forms.TextInput(attrs={'placeholder':'Enter Full Names'}))
     county=forms.CharField(max_length=50,widget=forms.TextInput(attrs={'placeholder':'Enter County Name'}))
     city=forms.CharField(max_length=50,widget=forms.TextInput(attrs={'placeholder':'Enter City Name'}))

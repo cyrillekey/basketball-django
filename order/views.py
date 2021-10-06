@@ -3,6 +3,9 @@ from basket.basket import Basket
 from order.models import Order,OrderItem
 from account.forms import Addressform
 from django.http import JsonResponse
+from account.models import shipping
+#from payment import mpesa_payment
+import random,string
 # Create your views here
 #.
 def checkout(request):
@@ -22,22 +25,36 @@ def checkout(request):
 def add(request):
     basket=Basket(request)
     user_id=request.user.id
-    baskettotal=basket.get_total_price()
-    order_key=""
-    """
-    if Order.objects.filter(order_key=order_key).exists():
-        pass
-    else:
-        order=Order.objects.create()
-        order_id=order.pk
-        for item in basket:
-            OrderItem.objects.create(order=order_id,product=item['product'],price=item['price'],quantity=item['qty'])
-    response=JsonResponse({'success':'Order Created'})    
-    return response    
-    """
+    baskettotal=basket.get_total_price()     
+    
     if 'mpesa' in request.POST:
         return HttpResponse("Pay with mpesa selected")
     elif 'delivery' in request.POST:
-        return HttpResponse("Pay Mpesa on  Delivery")  
+        #will handle the user pay on delivery
+        order_key=''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(10))
+        if Order.objects.filter(order_key=order_key).exists():
+            pass
+        else:
+            form=Addressform(request.POST)
+            if form.is_valid():
+                fullname=form.cleaned_data['fullnames']
+                county=form.cleaned_data['county']
+                city=form.cleaned_data['city']
+                area=form.cleaned_data['area']
+                email=form.cleaned_data['email']
+                phone=form.cleaned_data['phone_number']
+                try:
+                    address=shipping.objects.create(fullnames=fullname,county=county,city=city,area=area,email=email,phone_number=phone,user=request.user)
+                    #order section
+                    order=Order.objects.create(user=request.user,total_paid=float(basket.get_total_price()),order_key=order_key,order_status="created",payment_status=False,voucher_code=False)
+                    #order_id=order.pk
+                    for item in basket:
+                        OrderItem.objects.create(order=order,product=item['product'],price=item['price'],quantity=item['qty'])
+                    response=JsonResponse({'success':'Order Created'})  
+                    return HttpResponse("Order created succesfully")
+                except:
+                    return HttpResponse("An error occured")
+            else:
+                return HttpResponse("Form is invalid")    
     else:
-        return HttpResponse("None worked")      
+        pass   
