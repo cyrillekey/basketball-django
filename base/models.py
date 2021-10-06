@@ -1,5 +1,8 @@
 from django.db import models
 import requests
+from decouple import config
+import json
+from urllib.parse import urljoin
 # Create your models here.
 
 class ProductManager():
@@ -41,8 +44,15 @@ class Product(models.Model):
         ordering=('-created',)  
     def __str__(self):
         return self.product_name
+    def save(self,*args,**kwargs):
+        facebook(self.product_image)
+        super(Product,self).save(*args,**kwargs)
 
-def facebook():
-    response=requests.get(
-        "https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&client_id=APP-ID&client_secret=APP-SECRET&fb_exchange_token=SHORT-LIVED-USER-ACCESS-TOKEN"
-        )
+
+def facebook(image):
+    url=urljoin('http://3109-41-212-104-46.ngrok.io/media/',str(image))
+    response=requests.post("https://graph.facebook.com/"+config("PAGE_ID")+"/photos?url="+str(url)+"&access_token="+config("FACEBOOK_ACCESS_TOKEN"))
+    response=json.loads(response.text)
+    print(response)
+    print(url)
+    
