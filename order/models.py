@@ -31,4 +31,4 @@ class OrderItem(models.Model):
     price=models.IntegerField()
     quantity=models.PositiveIntegerField(default=1)
     def __str__(self):
-        return str(self.id)
+        return str(self.order)
