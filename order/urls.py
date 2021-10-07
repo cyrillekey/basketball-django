@@ -6,6 +6,7 @@ app_name="order"
 
 urlpatterns=[
     path("",checkout,name="checkout"),
-    path("add/",add,name="add")
+    path("add/",add,name="add"),
+    path("success/",add,name="success")
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

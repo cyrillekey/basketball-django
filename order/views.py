@@ -49,7 +49,7 @@ def add(request):
                 for item in basket:
                     OrderItem.objects.create(order=order,product=item['product'],price=item['price'],quantity=item['qty'])
                 response=JsonResponse({'success':'Order Created'})  
-                return HttpResponse("Order created succesfully")
+                return render(request,"order/success.html")
             except:
                 return HttpResponse("Order Not created")    
         else:
@@ -76,7 +76,7 @@ def add(request):
                     for item in basket:
                         OrderItem.objects.create(order=order,product=item['product'],price=item['price'],quantity=item['qty'])
                     response=JsonResponse({'success':'Order Created'})  
-                    return HttpResponse("Order created succesfully")
+                    return render(request,"order/success.html")
                 except:
                     return HttpResponse("An error occured")
             else:
