@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from account.models import shipping
 from django.db import transaction
 from payment import mpesa_payment
+from base.models import Product
 import random,string
 # Create your views here
 #.
@@ -75,6 +76,10 @@ def add(request):
                     #order_id=order.pk
                     for item in basket:
                         OrderItem.objects.create(order=order,product=item['product'],price=item['price'],quantity=item['qty'])
+                        product=Product.objects.filter(id=item['product'].id)
+                        for p in product:
+                            p.stock=(p.stock-item['qty'])
+                            p.save()
                     response=JsonResponse({'success':'Order Created'})  
                     return render(request,"order/success.html")
                 except:

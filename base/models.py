@@ -3,6 +3,8 @@ import requests
 from decouple import config
 import json
 from urllib.parse import urljoin
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 # Create your models here.
 
 class ProductManager():
@@ -44,15 +46,17 @@ class Product(models.Model):
         ordering=('-created',)  
     def __str__(self):
         return self.product_name
+"""
     def save(self,*args,**kwargs):
         facebook(self.product_image)
         super(Product,self).save(*args,**kwargs)
-
-
-def facebook(image):
-    url=urljoin('http://3109-41-212-104-46.ngrok.io/media/',str(image))
-    response=requests.post("https://graph.facebook.com/"+config("PAGE_ID")+"/photos?url="+str(url)+"&access_token="+config("FACEBOOK_ACCESS_TOKEN"))
-    response=json.loads(response.text)
-    print(response)
-    print(url)
-    
+"""
+@receiver(post_save,sender=Product)
+def facebook(sender,instance,created,**kwargs):
+    if created:
+        url=urljoin('http://3109-41-212-104-46.ngrok.io/media/',str(instance.product_image))
+        response=requests.post("https://graph.facebook.com/"+config("PAGE_ID")+"/photos?url="+str(url)+"&access_token="+config("FACEBOOK_ACCESS_TOKEN"))
+        response=json.loads(response.text)
+        print(response)
+        print(url)
+        
