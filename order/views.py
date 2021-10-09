@@ -52,7 +52,7 @@ def add(request):
                 response=JsonResponse({'success':'Order Created'})  
                 return render(request,"order/success.html")
             except:
-                return HttpResponse("Order Not created")    
+                return render(request,"order/fail.html")    
         else:
             redirect("checkout")
     elif 'delivery' in request.POST:
@@ -72,7 +72,7 @@ def add(request):
                 try:
                     address=shipping.objects.create(fullnames=fullname,county=county,city=city,area=area,email=email,phone_number=phone,user=request.user)
                     #order section
-                    order=Order.objects.create(user=request.user,total_paid=float(basket.get_total_price()),order_key=order_key,order_status="created",payment_status=False,voucher_code=False)
+                    order=Orde.objects.create(user=request.user,total_paid=float(basket.get_total_price()),order_key=order_key,order_status="created",payment_status=False,voucher_code=False)
                     #order_id=order.pk
                     for item in basket:
                         OrderItem.objects.create(order=order,product=item['product'],price=item['price'],quantity=item['qty'])
@@ -83,7 +83,7 @@ def add(request):
                     response=JsonResponse({'success':'Order Created'})  
                     return render(request,"order/success.html")
                 except:
-                    return HttpResponse("An error occured")
+                    return render(request,"order/fail.html")    
             else:
                 return HttpResponse("Form is invalid")    
     else:

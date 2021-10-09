@@ -1,0 +1,35 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}
+    Fail
+{% endblock title %}
+
+{% block content %}
+    <div class="page-wrapper" style="margin-top: 140px; height:100vh;"  >
+            <!-- End .header -->
+        <div class="background"></div>
+<div class="container">
+	
+	<!--/.row-->
+	<div class="row" style="margin-top:120px;">
+		<div class="modalbox error col-sm-8 col-md-6 col-lg-5 center animate">
+			<div class="icon">
+				<span class="fa fa-times" style="margin-top:30%;font-size:40px;"></span>
+			</div>
+			<!--/.icon-->
+			<h1>Oh no!</h1>
+			<p>Oops! Something went wrong,
+				<br> you should try again.</p>
+			<a href="{%url 'order:checkout'%}"><button type="button" class="redo btn">Try again</button></a>
+			<span class="change">-- Try again Later --</span>
+		</div>
+		<!--/.success-->
+	</div>
+	<!--/.row-->
+</div>
+<!--/.container-->
+            <!-- End .main -->
+    
+            <!-- End .footer -->
+        </div>
+{% endblock content %}
