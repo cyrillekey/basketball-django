@@ -34,7 +34,7 @@ class Product(models.Model):
     product_image1=models.ImageField(upload_to="media/",null=True)
     product_image2=models.ImageField(upload_to="media/",null=True)
     product_image3=models.ImageField(upload_to="media/",null=True)
-    stock=models.IntegerField()
+    stock=models.PositiveIntegerField()
     is_new=models.BooleanField(default=False)
     product_size=models.CharField(max_length=255,choices=SIZE)  
     category=models.ForeignKey(Category,related_name='product',on_delete=models.CASCADE)
