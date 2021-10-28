@@ -32,3 +32,11 @@ class OrderItem(models.Model):
     quantity=models.PositiveIntegerField(default=1)
     def __str__(self):
         return str(self.order)
+
+class OrderShipping(models.Model):
+    tracking_id=models.CharField(max_length=50)
+    shipping_date=models.DateField(auto_now_add=True)
+    order_id=models.ForeignKey(Order,related_name="ordershipping",on_delete=models.CASCADE)
+    shipping_method=models.CharField(max_length=50)
+    shipping_fee=models.CharField(max_length=20)
+    order_key=models.CharField(max_length=10)

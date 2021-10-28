@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import login,authenticate,logout
 from account.forms import RegistrationForm,AccountAuthentication
 from django.contrib.auth.decorators import login_required
+from order.models import  Order
+from account.models import shipping
 
 # Create your views here.
 
@@ -72,6 +74,8 @@ def logout_view(request):
 def account(request):
     user=request.user
     if user.is_authenticated:
-        return render(request,'account/account.html')    
+        user_order=Order.objects.filter(user=user)
+        address=shipping.objects.filter(user=user)[0:1]
+        return render(request,'account/account.html',{'orders':user_order,'addresses':address})    
     else:
         return redirect('login')    
