@@ -18,8 +18,13 @@
 			</div>
 			<!--/.icon-->
 			<h1>Oh no!</h1>
-			<p>Oops! Something went wrong,
+			{%if prod%}
+			<p>The {{prod}} stock is less than your order ,
+				<br> you should try again with reduced order.</p>
+			{%else%}
+			<p>Something went wrong  ,
 				<br> you should try again.</p>
+			{%endif%}	
 			<a href="{%url 'order:checkout'%}"><button type="button" class="redo btn">Try again</button></a>
 			<span class="change">-- Try again Later --</span>
 		</div>
